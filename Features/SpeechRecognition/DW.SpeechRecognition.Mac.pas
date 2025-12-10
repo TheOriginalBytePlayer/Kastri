@@ -19,7 +19,7 @@ uses
   // macOS
   Macapi.ObjectiveC, Macapi.Foundation, Macapi.AVFoundation,
   // DW
-  DW.Macapi.Speech, DW.Macapi.AVFoundation,
+  DW.Macapi.Speech, DW.Macapi.AVFAudio,
   DW.SpeechRecognition.Cocoa, DW.SpeechRecognition, DW.Types;
 
 type
@@ -152,7 +152,7 @@ begin
   FTask := FRecognizer.recognitionTaskWithRequest(FRequest, RecognitionRequestSpeechResultHandler);
   FInputNode.installTapOnBus(0, 4096, FInputNode.outputFormatForBus(0), InputNodeInstallTapOnBusHandler);
   FAudioEngine.prepare;
-  FAudioEngine.startAndReturnError;
+  FAudioEngine.startAndReturnError(@LPointer);
   StartedRecording;
 end;
 
